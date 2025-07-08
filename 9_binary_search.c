@@ -1,41 +1,21 @@
 #include <stdio.h>
 
-int binarySearch(int arr[], int left, int right, int x) {
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-        
-        if (arr[mid] == x)
-            return mid;
-        
-        if (arr[mid] < x)
-            left = mid + 1;
-        else
-            right = mid - 1;
+int binarySearch(int arr[], int n, int key) {
+    int l = 0, r = n - 1;
+    while (l <= r) {
+        int m = (l + r) / 2;
+        if (arr[m] == key) return m;
+        if (arr[m] < key) l = m + 1;
+        else r = m - 1;
     }
-    
     return -1;
 }
 
 int main() {
-    int arr[100], n, x, result;
-    
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    
-    printf("Enter %d sorted integers: ", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
-    
-    printf("Enter element to search: ");
-    scanf("%d", &x);
-    
-    result = binarySearch(arr, 0, n - 1, x);
-    
-    if (result == -1)
-        printf("Element not found\n");
-    else
-        printf("Element found at index: %d\n", result);
-    
+    int arr[] = {1, 3, 5, 7, 9};
+    int key = 7;
+    int res = binarySearch(arr, 5, key);
+
+    res == -1 ? printf("Not found\n") : printf("Found at index %d\n", res);
     return 0;
 }
